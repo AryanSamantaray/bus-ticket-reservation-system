@@ -10,8 +10,24 @@ class Bus:
         self.available_seats = set(range(1,capacity+1))
         self.occupied_seats = set()
 
-bus1 = Bus("BUS101", "Delhi", "Agra", 4, 500)
-print(bus1.route)
-print(f"{bus1.available_seats}\n{bus1.route}\n{bus1.capacity}\n{bus1.base_fare}")
+class ACBus(Bus):
+    def calculate_fare(self):
+        return self.base_fare * 1.25
+
+class NonACBus(Bus):
+    def calculate_fare(self):
+        return self.base_fare
+
+buses = {
+    "bus1": ACBus("BUS101", "Delhi", "Agra", 4, 500),
+    "bus2": NonACBus("BUS102", "Delhi", "Jaipur", 5, 400),
+}
+for bus_number, bus in buses.items():
+    print(bus_number, bus.route, bus.calculate_fare(), bus.available_seats)
+
+
+
+
+
 
 
